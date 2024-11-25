@@ -990,6 +990,11 @@ int main(Global& glb, const char* souffle_executable) {
     // Apply all the transformations
     pipeline->apply(*astTranslationUnit);
 
+    if (hasShowOpt("none")) {
+        std::cout << "Check executability of the program only.\n";
+        return 0;
+    }
+
     // Output the transformed datalog (support alias opt name of 'datalog')
     if (hasShowOpt("transformed-ast", "transformed-datalog")) {
         std::cout << astTranslationUnit->getProgram() << std::endl;
